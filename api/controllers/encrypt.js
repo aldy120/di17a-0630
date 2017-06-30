@@ -1,26 +1,12 @@
 var https = require('https');
 var request = require('request');
 
-var options = {
-  uri: 'https://www.googleapis.com/urlshortener/v1/url',
-  method: 'POST',
-  json: {
-    "longUrl": "http://www.google.com/"
-  }
-};
-
-request(options, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body.id) // Print the shortened url.
-  }
-});
-
 function send(req, res) {
   var plaintext = req.swagger.params.body.value.plaintext;
   var re = /^[0-9A-Fa-f]*$/;
-  if (!re.test(plaintext)) {
+  if (!re.test(plaintext) || plaintext.length % 2) {
     res.json(400, {
-      message: 'should be hex'
+      message: 'should be hex format'
     });
     return;
   }
@@ -66,9 +52,6 @@ function send(req, res) {
   // write data to request body
   request.write(postData);
   request.end();
-
-
-
 }
 
 module.exports = {
