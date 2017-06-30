@@ -26,7 +26,7 @@ function deleteKEY(req, res) {
   var key = req.swagger.params.KvKey.value;
   if (!URLSafeBase64.validate(key)) {
     res.json(400, {
-      message: 'not found'
+      message: 'format error.'
     });
     return;
   }
