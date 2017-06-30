@@ -1,8 +1,5 @@
 var URLSafeBase64 = require('urlsafe-base64');
-let now = (new Date()).toISOString();
-var db = {
-  123: '321'
-}
+var db = {};
 
 function getKEY(req, res) {
   var key = req.swagger.params.KvKey.value;
@@ -21,7 +18,7 @@ function getKEY(req, res) {
   var VALUE = db[key];
   res.json(200, {
     VALUE,
-    TS: now
+    TS: new Date()
   });
 }
 
@@ -35,7 +32,7 @@ function deleteKEY(req, res) {
   }
   if(!db.hasOwnProperty(key)) {
     res.json(200, {
-      TS: now
+      TS: new Date()
     });
     return;
   }
@@ -43,7 +40,7 @@ function deleteKEY(req, res) {
   delete db[key];
   res.json(200, {
     OLD_VALUE,
-    TS: now,
+    TS: new Date(),
   });
 }
 
@@ -58,7 +55,7 @@ function postKEY(req, res) {
   var value = req.swagger.params.body.value.VALUE;
   db[key] = value;
   res.json(200, {
-    TS: now,
+    TS: new Date(),
   });
 }
 
