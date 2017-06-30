@@ -72,6 +72,7 @@ paths:
           description: Bad Request, usually malformed parameters
           schema:
             $ref: "#/definitions/ErrorResponse"
+ 
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -111,3 +112,10 @@ definitions:
     properties:
       message:
         type: string
+  EncryptPostRequest:
+    required: 
+      - plaintext
+    properties:
+      plaintext:
+        type: string
+  
