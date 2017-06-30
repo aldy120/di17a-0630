@@ -72,7 +72,27 @@ paths:
           description: Bad Request, usually malformed parameters
           schema:
             $ref: "#/definitions/ErrorResponse"
- 
+
+  /encrypt:
+    x-swagger-router-controller: encrypt
+    post:
+      description: Update VALUE to given KEY
+      operationId: send
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: "#/definitions/EncryptPostRequest"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/EncryptPostResponse"
+        "400":
+          description: Bad Request, usually malformed parameters
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -117,5 +137,11 @@ definitions:
       - plaintext
     properties:
       plaintext:
+        type: string
+  EncryptPostResponse:
+    required: 
+      - ciphertext
+    properties:
+      ciphertext:
         type: string
   

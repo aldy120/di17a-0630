@@ -19,6 +19,7 @@
   "dependencies": {
     "install": "^0.10.1",
     "npm": "^5.0.4",
+    "require": "^2.4.20",
     "restify": "^4.0.2",
     "swagger-restify-mw": "^0.1.0",
     "urlsafe-base64": "^1.0.0"
