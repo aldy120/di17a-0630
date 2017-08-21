@@ -55,7 +55,7 @@ describe('controllers', function() {
               .expect(200))
           .then(() => 
             agent.get(uri).expect(200))
-              .then(res => assert(res.body.VALUE, value))
+              .then(res => assert.equal(res.body.VALUE, value))
           .then(() => agent.del(uri).expect(200))
           .then(() => agent.get(uri).expect(404))
           .then(() => done(), err => done(err))
